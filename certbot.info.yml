@@ -1,0 +1,5 @@
+name: 'certbot'
+type: module
+description: 'this is a tool to locate certs via database'
+package: cryptotaller
+core_version_requirement: ^10 || ^11

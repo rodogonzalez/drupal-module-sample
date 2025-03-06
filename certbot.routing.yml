@@ -1,0 +1,8 @@
+certbot.content:
+  path: '/.well-known/acme-challenge/{cert_key}'
+
+  defaults:
+    _controller: '\Drupal\certbot\Controller\ExportController::generate_result'
+    _title: 'Cert Bot Manager for Drupal)'
+  requirements:
+    _permission: 'access content'
