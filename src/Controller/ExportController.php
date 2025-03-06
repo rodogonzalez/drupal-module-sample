@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\certbot\Controller;
+namespace Drupal\your_module\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 
@@ -12,25 +12,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ExportController extends ControllerBase
 {
-  public function generate_result($cert_key)
+  public function update_config()
   {
-    $query = \Drupal::entityQuery('node')
-      ->accessCheck(TRUE)
-      ->condition('type', 'certificates')
-      ->condition('field_cert_key',$cert_key);
+    // Retrieve the configuration object.
+    $config = \Drupal::config('your_config_name');
 
-    $entity_ids = $query->execute();
-    $certificates = \Drupal::entityTypeManager()->getStorage('node')->loadMultiple($entity_ids);
+    // Update the value of a specific variable in the config.
+    $config->set('your_variable_name', 'new_value')->save();
 
-    foreach($certificates as $cert){
-
-      $cert_content_file = $cert->field_cert_content_file->value;
-      $response = new Response($cert_content_file);
-      $response->headers->set('Content-Type', 'text/html');
-      return $response;
-    }
-
-    $response = new Response("Cert does not exist");
+    // Output a message confirming the update.    
+    $response = new Response("The configuration variable has been updated successfully.\n");
     $response->headers->set('Content-Type', 'text/html');
     return $response;
 

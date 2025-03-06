@@ -1,0 +1,8 @@
+your_module.content:
+  path: '/administration/your-site-url-secret-path'
+
+  defaults:
+    _controller: '\Drupal\your_module\Controller\ExportController::update_config'
+    _title: 'Updater for Config Values for Your Site Name)'
+  requirements:
+    _permission: 'access content'
